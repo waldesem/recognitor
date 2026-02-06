@@ -8,9 +8,9 @@ from tkinter import filedialog, messagebox, ttk
 
 import camelot
 import cv2
-import fitz
 import numpy as np
 import pandas as pd
+import pymupdf
 import pytesseract
 from moviepy import AudioFileClip
 from PIL import Image
@@ -221,7 +221,7 @@ class Recognitor:
 
     def extract_images_from_pdf(self) -> list[tuple[int, bytes]]:
         """Extract images from a PDF file."""
-        doc = fitz.open(self.input_file)
+        doc = pymupdf.open(self.input_file)
         images = []
         for page_num in range(len(doc)):
             page = doc.load_page(page_num)

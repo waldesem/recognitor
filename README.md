@@ -10,7 +10,7 @@ A simple Python GUI application that converts files to text.
 - **Image formats** - Supports JPG, JPEG, PNG, BMP.
 - **Real-time progress tracking** - Visual progress bar with status updates
 - **Automatic file management** - Saves text files in the same directory as source
-- **Cross-platform compatibility** - Works on Windows, macOS, and Linux
+- **Cross-platform compatibility** - Works on Windows and Linux
 
 ## Screenshots
 
@@ -32,6 +32,13 @@ cd recognitor
 2. **Install required dependencies:**
 ```bash
 pip install -r requirements.txt
+```
+NOTE: If problem `ModuleNotFoundError: No module named 'frontend'` appears after start app,
+please execute commands:
+
+```
+pip uninstall fitz
+pip install --force-reinstall pymupdf
 ```
 
 3. **Install Vosk models (for offline recognition):**
