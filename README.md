@@ -1,20 +1,6 @@
 # Recognitor
 
-A simple Python GUI application that converts files to text.
-
-## Features
-
-- **Easy-to-use GUI** - Simple tkinter-based interface
-- **Multiple media formats** - Supports MP4, AVI, MOV, MKV, MP3, WAV, OGG.
-- **Portable Document Format** - Supports pdf tables, text and images.
-- **Image formats** - Supports JPG, JPEG, PNG, BMP.
-- **Real-time progress tracking** - Visual progress bar with status updates
-- **Automatic file management** - Saves text files in the same directory as source
-- **Cross-platform compatibility** - Works on Windows and Linux
-
-## Screenshots
-
-![Application Interface](screenshot.png)
+A simple application that converts speech to text.
 
 ## Requirements
 
@@ -33,33 +19,33 @@ cd recognitor
 ```bash
 pip install -r requirements.txt
 ```
-NOTE: If problem `ModuleNotFoundError: No module named 'frontend'` appears after start app,
-please execute commands:
-
-```
-pip uninstall fitz
-pip install --force-reinstall pymupdf
-```
 
 3. **Install Vosk models (for offline recognition):**
 ```bash
 wget https://alphacephei.com/vosk/models/vosk-model-ru-0.42.zip
 unzip vosk-model-ru-0.42.zip
 mv vosk-model-ru-0.42 model
+rm vosk-model-ru-0.42.zip
+
+# Code below not tested yet
+wget https://alphacephei.com/vosk/models/vosk-recasepunc-ru-0.22.zip
+unzip vosk-recasepunc-ru-0.22.zip
+mv vosk-recasepunc-ru-0.22 recasepunc
+rm vosk-recasepunc-ru-0.22.zip
+
+wget https://alphacephei.com/vosk/models/vosk-model-spk-0.4.zip
+unzip vosk-model-spk-0.4.zip
+mv vosk-model-spk-0.4 spk
+rm vosk-model-spk-0.4.zip
 ```
 
 ## Usage
 
 1. **Run the application:**
 ```bash
-python recognitor.py
+python3 recognitor.py '/dest/audio-video.file'
 ```
-
-2. **Convert to text:**
-   - Click "Browse" to select a file
-   - Click "Convert to Text"
-   - Wait for the conversion to complete
-   - Click "Open Folder" to view the generated text file
+Output file placed in the same directory as input file.
 
 ## Building Executable
 You can create a standalone executable using PyInstaller that includes all dependencies and models.
