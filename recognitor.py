@@ -8,15 +8,17 @@ from speech_recognition import AudioFile, Recognizer
 
 
 @click.command()
-@click.argument("input_file", type=click.Path(exists=True, file_okay=True, path_type=Path))
+@click.argument(
+    "input_file", type=click.Path(exists=True, file_okay=True, path_type=Path)
+)
 def speech_to_text(input_file: Path) -> None:
     """Recognize speech from an audio file and save it as text."""
     file = AudioFileClip(str(input_file))
-    wav_filename = input_file.parent / f"{input_file.stem}.wav"
+    wav_filename = input_file.parent.joinpath(f"{input_file.stem}.wav")
     file.write_audiofile(str(wav_filename))
     file.close()
 
-    # Initialize recognizer    
+    # Initialize recognizer
     click.secho(
         f"Recognizing speech from {input_file.name}...",
         fg="green",
@@ -27,7 +29,7 @@ def speech_to_text(input_file: Path) -> None:
         text = r.recognize_vosk(data)
 
     # Save text to file
-    output_file = input_file.parent / f"{input_file.stem}.txt"
+    output_file = input_file.parent.joinpath(f"{input_file.stem}.txt")
     with output_file.open("w", encoding="utf-8") as f:
         f.write(text)
 
